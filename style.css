@@ -1,0 +1,522 @@
+:root{
+    --container-bg: #a4ecce;
+    --side-bar-bg: #5cb391;
+    --menu-project-item-bg: #439676;
+    --darker-color: #104d35;
+    --dark-color: #287256;
+    --error-color: #a7134c;
+    --input-wrong-bg: #eca1bf;
+    --done-item-color: #497462;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+html, body{
+    height: 100vh;
+    width: 100%;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "header header"
+    "side-bar main-container";
+
+    height: 100%;
+
+    background-color: var(--container-bg);
+}
+
+/* CONTAINER ULTILITY */
+header,
+.side-bar,
+.main-container{
+    display: flex;
+    padding: 16px;
+}
+
+/* SIDE BAR ULTILITY */
+.side-bar .add-button-container,
+.side-bar .menu-container{
+    width: 80%;
+    max-width: 350px;
+    min-width: 250px;
+}
+
+/* HEADER */
+header{
+    grid-area: header;
+    justify-content: center;
+    align-items: center;
+}
+header h1{
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--darker-color);
+}
+/* SIDE BAR */
+.side-bar{
+    grid-area: side-bar;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+.side-bar .add-button-container button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    padding: 16px 0;
+    
+    background-color: transparent;
+
+    border: none;
+
+    transition: all ease-in-out .1s;
+    cursor: pointer;
+}
+.side-bar .add-button-container button:hover{
+    transform: scale(1.1);
+}
+.side-bar .add-button-container button img{
+    height: 28px;
+}
+.side-bar .add-button-container button p{
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--dark-color);
+}
+
+.side-bar .menu-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+
+    padding: 32px 0;
+
+    background-color: var(--side-bar-bg);
+
+    border-radius: 32px;
+}
+.side-bar .menu-container button{
+    width: 100%;
+    padding: .8rem 0;
+
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--dark-color);
+    background-color: transparent;
+    
+    border: none;
+
+    cursor: pointer;
+}
+.side-bar .menu-container button.active{
+    font-weight: 900;
+    color: var(--container-bg);
+    background-color: var(--dark-color);
+
+}
+
+.side-bar .menu-container>p{
+    width: 100%;
+    padding: 0 16px;
+    margin-top: 16px;
+
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--darker-color);
+}
+.side-bar .menu-container .projects-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    height: 100%;
+    width: 100%;
+    padding: 8px 0;
+}
+.side-bar .menu-container .projects-container .menu-project{
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 90%;
+    height: 2.5rem;
+    border-radius: 2rem;
+
+    background-color: var(--menu-project-item-bg);
+
+    color: var(--container-bg);
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.side-bar .menu-container .projects-container .menu-project.active{
+    background-color: var(--dark-color);
+    font-weight: 900;
+}
+
+/* main-container */
+.main-container{
+    grid-area: main-container;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+.main-container .main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 16px;
+
+    background-color: var(--side-bar-bg);
+    border-radius: 25px;
+}
+.main-container .main-content .project-title{
+    display: flex;
+    justify-content: center;
+    
+    width: 100%;
+    padding-bottom: 8px;
+    
+    border-bottom: 2px solid var(--darker-color);
+}
+.main-container .main-content .project-title p{
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--darker-color);
+}
+.main-container .main-content .project-items-filter{
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+
+    margin-top: 16px;
+}
+.main-container .main-content .project-items-filter button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: .5rem 2rem;
+    padding-bottom: .1rem;
+
+    font-size: 16px;
+    font-weight: 400;
+
+    background-color: transparent;
+    color: var(--darker-color);
+
+    border: none;
+
+    transition: all ease-in-out .2s;
+}
+.main-container .main-content .project-items-filter button:hover{
+    transform: scale(1.2);
+}
+.main-container .main-content .project-items-filter button.active{
+    font-weight: 900;
+    background-color: var(--container-bg);
+    border-radius: 2rem;
+    transform: scale(1.2);
+}
+
+.main-container .project-items-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    width: 100%;
+    height: 95%;
+    padding: 2rem 1rem;
+    overflow: auto;
+
+}
+.main-container .project-items-container .project-item{
+    display: flex;
+    gap: 8px;
+
+    width: 100%;
+    padding: 8px 16px;
+    background-color: var(--menu-project-item-bg);
+    border-radius: 10px;
+}
+.main-container .project-items-container .project-item .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 8px;
+
+}
+.main-container .project-items-container .project-item .left button{ 
+    height: 22px;
+    width: 22px;
+
+
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-color: var(--container-bg);
+    border: 2px solid var(--dark-color);
+    border-radius: 6px;
+
+    cursor: pointer;
+    transition: all ease-in-out .2s;
+}
+.main-container .project-items-container .project-item.concluded .left button{ 
+    background-image: url(../src/assets/check.png);
+
+    background-color: var(--dark-color);
+}
+.main-container .project-items-container .project-item .center{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    font-size: 16px;
+    color: var(--container-bg);
+}
+.main-container .project-items-container .project-item .center p{ 
+    transition: all ease-in-out .05s;
+}
+.main-container .project-items-container .project-item.concluded .center p{ 
+    font-style: italic;
+    text-decoration: line-through;
+    color: var(--done-item-color);
+}
+.main-container .project-items-container .project-item .center .description{
+    font-size: 18px;
+}
+.main-container .project-items-container .project-item .center .dates{
+    display: flex;
+    gap: 10vw;
+}
+.main-container .project-items-container .project-item .rigth{
+    height: 100%;
+    width: 32px;
+}
+.main-container .project-items-container .project-item .rigth button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 100%;
+
+    cursor: pointer;
+}
+.main-container .project-items-container .project-item .rigth button:hover > img{
+    height: 30px;
+}
+.main-container .project-items-container .project-item .rigth button img{
+    height: 26px;
+    transition: all ease-in-out .2s;
+}
+.main-container .empty{
+    transform: scale(0);
+}
+.main-container .empty.active{
+    transform: scale(1);
+    position: relative;
+    bottom: 35vh;
+    font-weight: 900;
+    font-size:  22px ;
+    color: var(--darker-color);
+}
+
+
+.main-container .add-button-container{
+    display: flex;
+    justify-content: end;
+
+    width: 100%;
+
+    overflow: hidden;
+}
+.main-container .add-button-container button.hided{
+    transform: scale(0);
+}
+.main-container .add-button-container button{
+    position: relative;
+    left: 108px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background-color: transparent;
+
+    border: none;
+    
+    transform: scale(1);
+
+    transition: all ease-in-out .4s;
+    cursor: pointer;
+}
+.main-container .add-button-container button:hover{
+    left: 0;
+}
+
+.main-container .add-button-container button img{
+    height: 28px;
+    transition: all ease-in-out .4s;
+}
+.main-container .add-button-container button:hover img{
+    transform: rotate(-180deg);
+}
+
+.main-container .add-button-container button p{
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.disabled-bg.active{ 
+    position: absolute;
+    
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 1;
+}
+
+form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 32px;
+
+    padding: 32px 0;
+    width: 600px;
+
+    background-color: var(--menu-project-item-bg);
+
+    border-radius: 25px;
+    z-index: 2;
+}
+form button:first-child{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 32px;
+    height: 32px;
+}
+
+form p:nth-child(2){
+    font-weight:400;
+    font-size: 36px;
+    color: var(--container-bg);
+}
+
+form input,
+form textarea{
+    padding: .5rem;
+    width: 90%;
+    
+    font-size: 18px;
+
+    background-color: var(--container-bg);
+    border: 2px solid var(--dark-color);
+    border-radius: 10px;
+    outline: none;
+    transition: all ease-in-out .2s;
+}
+form .description{
+    width: 90%;
+}
+form .description textarea{
+    width: 100%;
+}
+form .dates-container{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+
+}
+form input[type = 'date']{
+    width: 48%;
+}
+form input.wrong,
+form textarea.wrong{
+    background-color: var(--input-wrong-bg);
+    border: 2px solid var(--error-color);
+    color: var(--container-bg);
+}
+
+form input::placeholder,
+form textarea::placeholder{
+    color: var(--darker-color);
+    opacity: .5;
+}
+form input.wrong::placeholder,
+form textarea.wrong::placeholder{
+    color: var(--error-color);
+}
+form p:nth-child(4){
+    transform: scale(0);
+    transition: all ease-in-out .2s;
+}
+form p:nth-child(4).active{
+    transform: scale(1);
+    font-size: 16px;
+    width: 85%;
+    margin-top: -30px;
+    color: var(--error-color);
+}
+form button{
+    
+    font-size: 18px;
+    color: var(--container-bg);
+    background-color: var(--dark-color);
+    border: none;
+    border-radius: 2rem;
+    
+    cursor: pointer;
+}
+form button:last-child{
+    width: 90%;
+    padding: .7rem;
+    
+    transition: all ease-in-out .2s;
+}
+form button:last-child:hover{
+    font-weight: 900;
+    transform: scale(1.04);
+}
